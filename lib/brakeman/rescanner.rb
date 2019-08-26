@@ -205,7 +205,7 @@ class Brakeman::Rescanner < Brakeman::Scanner
 
     lib = nil
 
-    tracker.libs.each do |_name, library|
+    tracker.libs.each_class do |library|
       if library.files.include?(path)
         lib = library
         break
@@ -349,7 +349,7 @@ class Brakeman::Rescanner < Brakeman::Scanner
     to_rescan = []
 
     #Rescan controllers that mixed in library
-    tracker.controllers.each do |_name, controller|
+    tracker.controllers.each_class do |controller|
       if controller.includes.include? lib.name
         controller.files.each do |path|
           unless @paths.include? path
