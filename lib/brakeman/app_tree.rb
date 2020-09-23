@@ -115,7 +115,7 @@ module Brakeman
         EXCLUDED_PATHS.any? do |excluded|
           relative_path.include? excluded
         end
-      end
+      end.uniq
     end
 
     def initializer_paths
